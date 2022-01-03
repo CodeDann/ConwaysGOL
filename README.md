@@ -4,4 +4,6 @@
 ## HOW TO USE
 - Simply enter the desired gridsize
 - Then use the pygame window to customise the randomised starting position
+- Click on a cell to toggle its state
 - Use enter to move to the next generation
+- Use "c" to clear the grid

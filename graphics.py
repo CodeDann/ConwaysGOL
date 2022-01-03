@@ -9,6 +9,14 @@ TEAL = (0, 128, 128)
 RED = (255, 0, 0)
 
 
+def clear_grid(grid):
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            grid[i][j] = 0
+
+    return grid
+
+
 def play_GOL(grid, N):
     
     # This sets the margin between each cell
@@ -54,6 +62,9 @@ def play_GOL(grid, N):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     grid = next_generation(grid)
+                if event.key == pygame.K_c:
+                    grid = clear_grid(grid)
+
 
         # Set the screen background
         screen.fill(TEAL)
