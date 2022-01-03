@@ -9,10 +9,8 @@ TEAL = (0, 128, 128)
 RED = (255, 0, 0)
 
 
-
-
 def play_GOL(grid, N):
-
+    
     # This sets the margin between each cell
     MARGIN = 2
     # This sets the WIDTH and HEIGHT of each grid location and screen
@@ -45,7 +43,7 @@ def play_GOL(grid, N):
             if event.type == pygame.QUIT:  # If user clicked close
                 pygame.quit()
                 return
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 # User clicks the mouse. Get the position
                 pos = pygame.mouse.get_pos()
                 # Change the x/y screen coordinates to grid coordinates
@@ -53,11 +51,11 @@ def play_GOL(grid, N):
                 row = pos[1] // (HEIGHT + MARGIN)
                 # toggle the state of that location
                 grid[row][column] = not(grid[row][column])
-            elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
-                        grid = next_generation(grid)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    grid = next_generation(grid)
 
-                # Set the screen background
+        # Set the screen background
         screen.fill(TEAL)
 
         # Draw the grid
