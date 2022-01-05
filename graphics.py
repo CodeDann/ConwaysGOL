@@ -1,12 +1,19 @@
-from logic import next_generation
+from logic import *
 import pygame
 
 
 # Define some colors
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+
+
 TEAL = (0, 128, 128)
+GREEN = (0, 255, 0)
+
 RED = (255, 0, 0)
+
+ALIVE = (255, 255, 255)
+NEW = (215, 0, 252)
+RECENT_DEAD = (66, 2, 0)
+DEAD = (0, 0, 0)
 
 
 def clear_grid(grid):
@@ -64,6 +71,8 @@ def play_GOL(grid, N):
                     grid = next_generation(grid)
                 if event.key == pygame.K_c:
                     grid = clear_grid(grid)
+                if event.key == pygame.K_r:
+                    grid = reset_game(grid, N)
 
 
         # Set the screen background
@@ -72,9 +81,16 @@ def play_GOL(grid, N):
         # Draw the grid
         for row in range(N):
             for column in range(N):
-                color = BLACK
+                color = DEAD
+                # draw alive cells
                 if grid[row][column] == 1:
-                    color = WHITE
+                    color = ALIVE
+                # draw new cells
+                elif grid[row][column] == 2:
+                    color = NEW
+                # draw recently dead cells
+                elif grid[row][column] == -1:
+                    color = RECENT_DEAD
                 pygame.draw.rect(screen,
                                  color,
                                  [(MARGIN + WIDTH) * column + MARGIN,
